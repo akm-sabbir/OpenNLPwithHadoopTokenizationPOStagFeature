@@ -9,7 +9,21 @@ set. I am not going into details of these algorithms about what they do and how 
 POS tagger generates the parts of speech tag for each tokenized word or bigrams. its a entropy based markov chain algorithm. it can be used
 as a feature in text analytics.
 
+For this programe better not to use the POS tag function unless u try to change output type of mapper object.
 compiling the java files along with external jar
+
+Tokenization functions are readilly usable.
+
+The challenge i faced when i tried to run the program is, how i can incorporate the external jars from OpenNlp library. it can be done
+two ways:
+
+1. u can install the OpenNLP library to each machine using shell or python script.
+2. u can push the external jar to distributed cache make it available to all the machines.
+
+I chose the second step. my external library path is /home/cloudera/opennlp/apache-opennlp-1.6.0/lib/*. So i add this path to Hadoop HDFS system. and made this available to all machine by adding the path into distributed cache by using following java line.
+
+Job.addArchivetoClassPath(new Path());
+
 javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/*:/home/cloudera/opennlp/apache-opennlp-1.6.0/lib/* BigramCount.java /
 OpenNlpTest.java -d build -Xlint
 
