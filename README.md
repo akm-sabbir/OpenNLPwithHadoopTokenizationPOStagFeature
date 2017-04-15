@@ -25,15 +25,15 @@ I chose the second step. my external library path is /home/cloudera/opennlp/apac
 
 Job.addArchivetoClassPath(new Path());
 
-Following steps related to project compilation, jar archive file generation and submit the job into hadoop clusters. three steps opeartion:
+Following steps related to project compilation, jar archive file generation and submit the job into hadoop clusters. It is a three steps opeartion:
 
-javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/*:/home/cloudera/opennlp/apache-opennlp-1.6.0/lib/* BigramCount.java /
-OpenNlpTest.java -d build -Xlint
+compiling java files to generate the executable class files "javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/*:/home/cloudera/opennlp/apache-opennlp-1.6.0/lib/* BigramCount.java /
+OpenNlpTest.java -d build -Xlint"
 
-creating the jar files
+creating the jar archive files, it is process of application packaging loadable and runnable in the system 
 jar -cvf bigramcount.jar org.bigramorg.BigramCount -C build/ .
 
-submitting the job into Hadoop Cluster
+submitting the job into Hadoop Cluster using tool inside hadoop/bin
 hadoop jar bigramcount.jar org.bigramorg.BigramCount /user/cloudera/wordcount/input /user/cloudera/wordcount/output /
 -skip /user/cloudera/wordcount/stop_words.text /user/cloudera/wordcount/en-token.bin
 
