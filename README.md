@@ -9,8 +9,9 @@ set. I am not going into details of these algorithms about what they do and how 
 POS tagger generates the parts of speech tag for each tokenized word or bigrams. its a entropy based markov chain algorithm. it can be used
 as a feature in text analytics.
 
-For this programe better not to use the POS tag function unless u try to change output type of mapper object.
-compiling the java files along with external jar
+For this programe better not to use the POS tag function unless u try to change output type of mapper object. One more thing, POS tag is 
+document context dependant that means similar word can have different pos tag depending on the context and that thing need to be considered. Therefore i will write a different Hadoop application to generate postag for different document.
+
 
 Tokenization functions are readilly usable.
 
@@ -23,6 +24,8 @@ two ways:
 I chose the second step. my external library path is /home/cloudera/opennlp/apache-opennlp-1.6.0/lib/*. So i add this path to Hadoop HDFS system. and made this available to all machine by adding the path into distributed cache by using following java line.
 
 Job.addArchivetoClassPath(new Path());
+
+Following steps related to project compilation, jar archive file generation and submit the job into hadoop clusters. three steps opeartion:
 
 javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/*:/home/cloudera/opennlp/apache-opennlp-1.6.0/lib/* BigramCount.java /
 OpenNlpTest.java -d build -Xlint
